@@ -1,0 +1,136 @@
+# Configuração do LoL Draft Advisor.
+#
+# Tudo aqui tem efeito sem precisar passar argumento. Os argumentos de linha de
+# comando continuam existindo e, quando usados, vencem o que está neste arquivo.
+
+[pagina_base]
+# Escolhas populares usadas como ponto de partida para Runas, Feitiços e itens.
+# "meu_elo" lê seu rank do client.
+# Valores: iron, bronze, silver, gold, platinum, emerald, diamond,
+#          gold_plus, emerald_plus, diamond_plus, master_plus, all
+elo = "meu_elo"
+janela = "patch_atual"
+
+# Elo de referência: quando a runa dele diverge da do seu elo, a diferença é
+# mostrada. Medido em 8 campeões, metade diverge entre Platina e Mestre+.
+referencia_elo = "master_plus"
+
+[matchups]
+# Cinco confrontos usados para personalizar a recomendação.
+elo = "meu_elo"
+janela_dias = 30
+
+[analise_estatistica]
+# Investigação opcional; não decide a Recomendação do Draft.
+habilitada = false
+elo = "all"
+janela_dias = 30
+
+
+[exibicao]
+# Quantos itens listar por slot.
+itens = 3
+
+# Ordenação da análise estatística detalhada do terminal: "pick" ou "winrate".
+# A recomendação de itens não usa win rate; ela parte da build popular e pode
+# aplicar a adaptação por pick rate depois das rotas serem confirmadas.
+ordenar_por = "pick"
+
+# Amostra mínima da análise estatística detalhada por item.
+min_jogos = 300
+
+# Com a análise ligada: mostrar os números por trás, e todos os itens.
+detalhe = false
+todos_os_itens = false
+
+
+[html]
+# Gera um relatório autocontido quando o champ select vira uma partida.
+habilitado = true
+
+# Abre a recomendação final no navegador padrão. O arquivo continua salvo mesmo
+# quando esta opção está desligada.
+abrir_automaticamente = true
+
+# Caminho relativo à raiz do projeto. Também aceita caminho absoluto.
+pasta = "relatorios"
+
+
+[client]
+# Criar/atualizar a página de runas no client e deixá-la selecionada.
+aplicar_runas = true
+
+# Id da página a sobrescrever quando não houver slot livre. Deixe 0 para o
+# programa usar a página dele (encontrada pelo nome) ou criar uma nova.
+pagina_runas = 0
+
+# Selecionar os feitiços no champ select.
+aplicar_feiticos = true
+
+# Forçar o Flash na tecla D (spell1). Trocar a mão no meio da partida custa mais
+# caro que qualquer ganho de win rate.
+flash_no_d = true
+
+
+[trocas]
+# Quanto de evidência uma alternativa precisa para substituir o padrão.
+#
+# z é o efeito dividido pela própria margem de erro: 2.0 significa "o ganho é o
+# dobro da incerteza". Abaixar isso faz aparecer mais troca, e mais ruído.
+z_minimo = 2.0
+
+# Amostra somada mínima, entre todos os matchups, para a troca valer.
+jogos_minimos = 500
+
+
+[adaptacao_elo_alto]
+# Motor de itens usado na recomendação final. Mede como jogadores de elo alto
+# mudam a frequência e o momento das compras contra este draft.
+habilitada = true
+# Recorte fixo escolhido após comparar as mesmas composições entre elos.
+# A lista contém um único valor para impedir leituras e fallback em outros elos.
+elos = ["emerald_plus"]
+janela_dias = 30
+
+# O recorte só é usado quando TODAS as cinco páginas respeitam estes cortes.
+jogos_totais_minimos = 5000
+jogos_por_matchup_minimos = 100
+
+# Itens entram na build principal a partir de z 1,65. Sinais entre 1,50 e
+# 1,65 aparecem somente como sequências exploratórias completas.
+z_principal = 1.65
+z_alternativa = 1.50
+corrigir_multiplos_itens = false
+
+# Botas não participam da cascata e mantêm correção múltipla própria.
+fdr_botas = 0.10
+max_alternativas = 3
+
+# Proteção contra a sobreposição entre as cinco páginas: uma mesma partida
+# pode aparecer em mais de um matchup, então o erro independente seria otimista.
+deflator_sobreposicao = 1.2
+
+# Item 6 de bottom combina a distribuição do Item 5 com presença total. Não há
+# penalidade adicional; o relatório identifica que esse slot é estimado.
+
+
+[relevancia]
+# Quanto cada inimigo pesa conforme a proximidade de rota. Cura, CC, tanque e
+# outras ameaças não recebem bônus: a página /vs/ já é condicionada à presença
+# daquele inimigo e suas consequências aparecem nas escolhas observadas.
+
+# Proximidade: quem te enfrenta diretamente.
+oponente_de_rota = 2.0    # divide a rota com você desde o minuto 1
+mesma_rota = 1.5          # o suporte inimigo, quando você é ADC
+outra_rota = 1.0
+
+
+[vigia]
+# Segundos entre leituras do client no modo --vigiar.
+intervalo = 2
+
+# Reaplicar runas e feitiços a cada mudança no draft. Se false, aplica só na
+# primeira vez que você escolhe campeão — útil se você gosta de ajustar a página
+# na mão depois.
+reaplicar_a_cada_mudanca = true
+

@@ -1,0 +1,32 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Ferramentas e configurações locais do ambiente de desenvolvimento.
+.claude/
+.codex/
+.serena/
+.obsidian/
+.agents/
+.vscode/
+graphify-out/
+reference/
+CLAUDE.md
+AGENTS.md
+skills-lock.json
+linkedin-cover.png
+
+# Dados gerados durante a execução.
+logs/
+
+# Sessão capturada do champ select: contém puuid, nome e tag dos outros nove
+# jogadores da partida. Fica só na sua máquina.
+session.json
+relatorios/
+
+# Material de estudo pessoal
+docs/aprendizado.md
+docs/decisoes.md
+
+

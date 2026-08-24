@@ -1,0 +1,9 @@
+{
+  "include": ["advisor", "scripts", "tests"],
+  "exclude": [".venv", "graphify-out", "relatorios"],
+  "venvPath": ".",
+  "venv": ".venv",
+  "pythonVersion": "3.13",
+  "typeCheckingMode": "basic"
+}
+

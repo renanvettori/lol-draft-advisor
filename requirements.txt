@@ -1,0 +1,6 @@
+requests>=2.31,<3
+urllib3>=2,<3
+numpy>=2,<3
+scipy>=1.14,<2
+statsmodels>=0.14,<1
+
